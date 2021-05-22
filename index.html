@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MinEnergo</title>
+	<meta charset="utf-8">
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=4dbf45da-0894-459a-9103-43bb20aefa0b&lang=ru_RU" type="text/javascript"></script>
+
+</head>
+<body>
+	
+	<script src="js/main.js" type="text/javascript"></script>
+	<script>
+  	function countRabbits() {
+  		if(window.i == 1)
+  		{
+  			location.reload();
+  		}
+  		window.i = 1;
+    	ymaps.borders.load('RU', {
+  		lang: 'ru',
+  		quality: 1
+		}).then(function (geojson) {
+  		var regions = ymaps.geoQuery(geojson);
+  		regions.search('properties.iso3166 = "RU-BA"').setOptions('fillColor', '#ffffff00');
+ 	 	regions.addToMap(window.myMap);
+		});
+  		}
+	</script>
+<div class="overlay"></div>
+	<input type="button" onclick="countRabbits()" value="Нажми на меня">
+
+	<div id="map" style="width: 1920px; height: 1000px"></div>
+</body>
+</html>
